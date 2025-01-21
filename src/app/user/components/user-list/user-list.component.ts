@@ -1,6 +1,6 @@
 // src/app/user/components/user-list/user-list.component.ts
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-list',
@@ -9,4 +9,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './user-list.component.html',
 })
 export class UserListComponent {
+  users = [
+    { name: 'John Doe' },
+    { name: 'Jane Doe' },
+    { name: 'Bob Smith' },
+  ];
 }
