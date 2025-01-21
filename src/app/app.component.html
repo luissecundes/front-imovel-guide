@@ -1,6 +1,9 @@
-<h1>Users Management</h1>
+<!-- src/app/app.component.html -->
 <nav>
-  <a routerLink="/users">User List</a>
-  <a routerLink="/register">Register User</a>
+  <ul>
+    <li><a routerLink="/users">User List</a></li>  <!-- Link para a lista de usuários -->
+    <li><a routerLink="/user-form">User Form</a></li>  <!-- Link para o formulário de usuário -->
+  </ul>
 </nav>
-<router-outlet></router-outlet>
+
+<router-outlet></router-outlet>  <!-- O RouterOutlet irá renderizar os componentes aqui -->
