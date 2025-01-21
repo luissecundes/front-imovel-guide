@@ -9,11 +9,11 @@ import { UserFormComponent } from './components/user-form/user-form.component';
 @NgModule({
   declarations: [],
   imports: [
+    UserListComponent,
+    UserFormComponent,
     CommonModule,
-    UserRoutingModule,
     FormsModule,
-    UserListComponent, 
-    UserFormComponent, 
+    UserRoutingModule,
   ],
 })
 export class UserModule {}
