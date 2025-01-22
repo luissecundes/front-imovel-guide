@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'front-guide' title`, () => {
+  it(`should have the 'ListaDeTarefasAngular' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('front-guide');
+    expect(app.title).toEqual('ListaDeTarefasAngular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, front-guide');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ListaDeTarefasAngular');
   });
 });
