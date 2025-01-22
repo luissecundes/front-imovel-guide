@@ -30,16 +30,16 @@ export class UserComponent implements OnInit {
 
   onSubmit(form: any): void {
     if (form.valid) {
-      this.isLoading = true; // Inicia o carregamento
+      this.isLoading = true; 
       const newUser: User = form.value;
       this.userService.addUser(newUser).subscribe(
         () => {
           this.loadUsers();
           form.reset();
-          this.isLoading = false; // Finaliza o carregamento
+          this.isLoading = false;
         },
         () => {
-          this.isLoading = false; // Finaliza mesmo em caso de erro
+          this.isLoading = false;
         }
       );
     }
@@ -52,16 +52,35 @@ export class UserComponent implements OnInit {
   deleteUser(index: number): void {
     const userId = this.users[index].id;
     if (userId) {
-      this.isLoading = true; // Inicia o carregamento
+      this.isLoading = true;
       this.userService.deleteUser(userId).subscribe(
         () => {
           this.users.splice(index, 1);
-          this.isLoading = false; // Finaliza o carregamento
+          this.isLoading = false;
         },
         () => {
-          this.isLoading = false; // Finaliza mesmo em caso de erro
+          this.isLoading = false;
         }
       );
     }
+  }
+
+  formatCpf(event: any): void {
+    const input = event.target as HTMLInputElement;
+    let value = input.value.replace(/\D/g, '');
+
+    if (value.length > 11) {
+      value = value.slice(0, 11);
+    }
+
+    if (value.length > 9) {
+      value = value.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    } else if (value.length > 6) {
+      value = value.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+    } else if (value.length > 3) {
+      value = value.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+    }
+
+    input.value = value;
   }
 }
