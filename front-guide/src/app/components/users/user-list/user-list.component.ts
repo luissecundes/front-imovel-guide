@@ -9,9 +9,6 @@ import { CommonModule } from '@angular/common';
   templateUrl: './user-list.component.html',
 })
 export class UserListComponent {
-  users = [
-    { name: 'John Doe' },
-    { name: 'Jane Doe' },
-    { name: 'Bob Smith' },
-  ];
+  users = [{ name: 'John Doe' }, { name: 'Jane Doe' }, { name: 'Bob Smith' }];
 }
+
