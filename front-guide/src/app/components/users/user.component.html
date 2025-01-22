@@ -1,7 +1,7 @@
 <div class="container">
   <!-- Título Dinâmico -->
   <h1 class="text-center mb-4">
-    {{ isEditMode ? 'Editar Corretor' : 'Bem-vindo à Imóvel Guide!' }}
+    {{ isEditMode ? "Editar Corretor" : "Bem-vindo à Imóvel Guide!" }}
   </h1>
 
   <button
@@ -60,7 +60,7 @@
       class="btn btn-success btn-block"
       [disabled]="isLoading"
     >
-      {{ isEditMode ? 'Editar' : 'Enviar' }}
+      {{ isEditMode ? "Editar" : "Enviar" }}
     </button>
   </form>
 
@@ -79,7 +79,7 @@
       <tr *ngFor="let user of users; let i = index">
         <td>{{ user.id }}</td>
         <td>{{ user.name }}</td>
-        <td>{{ user.cpf }}</td>
+        <td>{{ formatCpfDisplay(user.cpf) }}</td>
         <td>{{ user.creci }}</td>
         <td>
           <button

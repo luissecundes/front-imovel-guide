@@ -106,6 +106,16 @@ export class UserComponent implements OnInit {
     input.value = value;
   }
 
+  formatCpfDisplay(cpf: string): string {
+    if (!cpf) return '';
+    cpf = cpf.replace(/\D/g, ''); // Remove quaisquer caracteres não numéricos
+
+    if (cpf.length === 11) {
+      return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    }
+    return cpf; // Retorna o CPF sem alteração, caso não tenha o tamanho correto
+  }
+
   cancelEdit(): void {
     this.resetForm();
   }
