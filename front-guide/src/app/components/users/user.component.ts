@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-tasks',
+  selector: 'app-users',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './user.component.html',
