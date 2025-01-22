@@ -1,4 +1,11 @@
 <div class="container">
+  <!-- Spinner -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
+
   <!-- Título Dinâmico -->
   <h1 class="text-center mb-4">
     {{ isEditMode ? "Editar Corretor" : "Bem-vindo à Imóvel Guide!" }}
