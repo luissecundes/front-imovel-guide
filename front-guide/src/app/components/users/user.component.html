@@ -1,4 +1,3 @@
-<!-- src/app/app.component.html -->
 <div class="container">
   <!-- Título -->
   <h1 class="text-center mb-4">Bem-vindo à Imóvel Guide!</h1>
@@ -32,9 +31,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user; let i = index">
+      <tr *ngFor="let user of users; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ user.nome }}</td>
+        <td>{{ user.name }}</td>
         <td>{{ user.cpf }}</td>
         <td>{{ user.creci }}</td>
         <td>
