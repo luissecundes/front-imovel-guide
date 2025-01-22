@@ -1,9 +1,10 @@
 <!-- src/app/app.component.html -->
-<nav>
-  <ul>
-    <li><a routerLink="/users">User List</a></li>
-    <li><a routerLink="/user-form">User Form</a></li>
-  </ul>
-</nav>
+<div class="welcome-container">
+  <div class="welcome-content">
+    <h1>Bem-vindo à nossa aplicação!</h1>
+    <p>Click no botão abaixo para acessar a tela de login.</p>
+    <button class="btn-animate" routerLink="/user-form">Ir para o Login</button>
+  </div>
+</div>
 
-<router-outlet></router-outlet> 
+<router-outlet></router-outlet>

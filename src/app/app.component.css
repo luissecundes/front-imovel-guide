@@ -1,0 +1,40 @@
+/* src/app/app.component.css */
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f8ff;  /* Cor de fundo suave */
+  color: #333;
+  font-family: 'Arial', sans-serif;
+}
+
+.welcome-content {
+  text-align: center;
+}
+
+.welcome-content h1 {
+  font-size: 3em;
+  margin-bottom: 20px;
+}
+
+.welcome-content p {
+  font-size: 1.2em;
+  margin-bottom: 40px;
+}
+
+.btn-animate {
+  padding: 15px 30px;
+  font-size: 1.2em;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-animate:hover {
+  transform: scale(1.1);  /* Aumenta o tamanho do botão quando o mouse passa por cima */
+  background-color: #45a049;  /* Muda a cor do botão ao passar o mouse */
+}
