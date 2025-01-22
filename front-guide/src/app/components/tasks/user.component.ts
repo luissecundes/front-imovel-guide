@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/task.service';
+import { UserService } from '../../services/user.service';
 import { User } from '../../../User';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-tasks',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css',
+  templateUrl: './user.component.html',
+  styleUrl: './user.component.css',
 })
 export class UserComponent implements OnInit {
   tarefas: User[] = [];
