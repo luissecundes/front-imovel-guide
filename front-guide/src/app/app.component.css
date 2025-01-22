@@ -83,11 +83,13 @@ button {
 
 .table th, .table td {
   padding: 12px;
-  text-align: left;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 .table-hover tbody tr:hover {
-  background-color: #cad4ec;
+  background-color: #c4c8d1;
+  transition: background-color 0.3s ease;
 }
 
 /* Botões de Ação */
