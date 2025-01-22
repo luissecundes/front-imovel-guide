@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   isLoading: boolean = false;
   cpfError: boolean = false;
   creciError: boolean = false;
+  nameError: boolean = false;
   successMessage: string = '';
 
   constructor(private userService: UserService) {}
@@ -35,7 +36,7 @@ export class UserComponent implements OnInit {
   onSubmit(form: any): void {
     this.validateForm();
 
-    if (form.valid && !this.cpfError && !this.creciError) {
+    if (form.valid && !this.cpfError && !this.creciError && !this.nameError) {
       this.isLoading = true;
       this.successMessage = '';
 
@@ -75,6 +76,7 @@ export class UserComponent implements OnInit {
   validateForm(): void {
     this.cpfError = this.currentUser.cpf.replace(/\D/g, '').length !== 11;
     this.creciError = this.currentUser.creci.length < 3;
+    this.nameError = this.currentUser.name.length < 3; 
   }
 
   editUser(index: number): void {
@@ -92,23 +94,22 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(index: number): void {
-  const userId = this.users[index].id;
-  if (userId) {
-    this.isLoading = true;
-    this.userService.deleteUser(userId).subscribe(
-      () => {
-        this.users.splice(index, 1);
-        this.successMessage = 'Usuário excluído com sucesso!';
-        this.isLoading = false;
-      },
-      (error) => {
-        this.isLoading = false;
-        console.error(error);
-      }
-    );
+    const userId = this.users[index].id;
+    if (userId) {
+      this.isLoading = true;
+      this.userService.deleteUser(userId).subscribe(
+        () => {
+          this.users.splice(index, 1);
+          this.successMessage = 'Usuário excluído com sucesso!';
+          this.isLoading = false;
+        },
+        (error) => {
+          this.isLoading = false;
+          console.error(error);
+        }
+      );
+    }
   }
-}
-
 
   formatCpf(event: any): void {
     const input = event.target as HTMLInputElement;
