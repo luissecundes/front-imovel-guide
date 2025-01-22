@@ -32,11 +32,13 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    // Verificar erros antes de enviar o formulário
     this.validateForm();
 
     if (form.valid && !this.cpfError && !this.creciError) {
       this.isLoading = true;
+
+      console.log('Dados enviados para o backend:', this.currentUser);
+      this.currentUser.cpf = this.currentUser.cpf.replace(/\D/g, '');
 
       if (this.isEditMode) {
         this.userService
@@ -46,8 +48,9 @@ export class UserComponent implements OnInit {
               this.loadUsers();
               this.resetForm();
             },
-            () => {
+            (error) => {
               this.isLoading = false;
+              console.error(error);
             }
           );
       } else {
@@ -56,8 +59,9 @@ export class UserComponent implements OnInit {
             this.loadUsers();
             this.resetForm();
           },
-          () => {
+          (error) => {
             this.isLoading = false;
+            console.error(error);
           }
         );
       }
