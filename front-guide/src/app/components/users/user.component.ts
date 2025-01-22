@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   currentUser: User = { id: 0, name: '', cpf: '', creci: '' };
   isEditMode: boolean = false;
   isLoading: boolean = false;
+  cpfError: boolean = false;
+  creciError: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -30,7 +32,10 @@ export class UserComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    if (form.valid) {
+    // Verificar erros antes de enviar o formulário
+    this.validateForm();
+
+    if (form.valid && !this.cpfError && !this.creciError) {
       this.isLoading = true;
 
       if (this.isEditMode) {
@@ -59,6 +64,11 @@ export class UserComponent implements OnInit {
     }
   }
 
+  validateForm(): void {
+    this.cpfError = this.currentUser.cpf.replace(/\D/g, '').length !== 11;
+    this.creciError = this.currentUser.creci.length < 3;
+  }
+
   editUser(index: number): void {
     const user = this.users[index];
     this.currentUser = { ...user };
@@ -69,6 +79,8 @@ export class UserComponent implements OnInit {
     this.currentUser = { id: 0, name: '', cpf: '', creci: '' };
     this.isEditMode = false;
     this.isLoading = false;
+    this.cpfError = false;
+    this.creciError = false;
   }
 
   deleteUser(index: number): void {
@@ -113,11 +125,10 @@ export class UserComponent implements OnInit {
     if (cpf.length === 11) {
       return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     }
-    return cpf; 
+    return cpf;
   }
 
   cancelEdit(): void {
     this.resetForm();
   }
 }
-
