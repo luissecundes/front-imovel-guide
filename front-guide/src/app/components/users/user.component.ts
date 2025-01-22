@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
+  isLoading: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -29,11 +30,18 @@ export class UserComponent implements OnInit {
 
   onSubmit(form: any): void {
     if (form.valid) {
+      this.isLoading = true; // Inicia o carregamento
       const newUser: User = form.value;
-      this.userService.addUser(newUser).subscribe(() => {
-        this.loadUsers();
-        form.reset(); 
-      });
+      this.userService.addUser(newUser).subscribe(
+        () => {
+          this.loadUsers();
+          form.reset();
+          this.isLoading = false; // Finaliza o carregamento
+        },
+        () => {
+          this.isLoading = false; // Finaliza mesmo em caso de erro
+        }
+      );
     }
   }
 
@@ -44,9 +52,16 @@ export class UserComponent implements OnInit {
   deleteUser(index: number): void {
     const userId = this.users[index].id;
     if (userId) {
-      this.userService.deleteUser(userId).subscribe(() => {
-        this.users.splice(index, 1);
-      });
+      this.isLoading = true; // Inicia o carregamento
+      this.userService.deleteUser(userId).subscribe(
+        () => {
+          this.users.splice(index, 1);
+          this.isLoading = false; // Finaliza o carregamento
+        },
+        () => {
+          this.isLoading = false; // Finaliza mesmo em caso de erro
+        }
+      );
     }
   }
 }

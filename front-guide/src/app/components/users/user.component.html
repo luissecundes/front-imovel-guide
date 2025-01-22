@@ -1,21 +1,55 @@
 <div class="container">
   <h1 class="text-center mb-4">Bem-vindo à Imóvel Guide!</h1>
 
+  <!-- Spinner -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Aguarde...</span>
+    </div>
+  </div>
+
   <!-- Formulário para Adicionar Usuário -->
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
       <label for="nome">Nome</label>
-      <input type="text" id="nome" name="name" ngModel required class="form-control" />
+      <input
+        type="text"
+        id="nome"
+        name="name"
+        ngModel
+        required
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label for="cpf">CPF</label>
-      <input type="text" id="cpf" name="cpf" ngModel required class="form-control" />
+      <input
+        type="text"
+        id="cpf"
+        name="cpf"
+        ngModel
+        required
+        class="form-control"
+      />
     </div>
     <div class="form-group">
       <label for="creci">CRECI</label>
-      <input type="text" id="creci" name="creci" ngModel required class="form-control" />
+      <input
+        type="text"
+        id="creci"
+        name="creci"
+        ngModel
+        required
+        class="form-control"
+      />
     </div>
-    <button type="submit" class="btn btn-success btn-block">Adicionar</button>
+    <button
+      type="submit"
+      class="btn btn-success btn-block"
+      [disabled]="isLoading"
+    >
+      Adicionar
+    </button>
   </form>
 
   <!-- Tabela de Dados -->
@@ -36,8 +70,20 @@
         <td>{{ user.cpf }}</td>
         <td>{{ user.creci }}</td>
         <td>
-          <button class="btn btn-warning btn-sm" (click)="editUser(i)">Editar</button>
-          <button class="btn btn-danger btn-sm ml-2" (click)="deleteUser(i)">Excluir</button>
+          <button
+            class="btn btn-warning btn-sm"
+            (click)="editUser(i)"
+            [disabled]="isLoading"
+          >
+            Editar
+          </button>
+          <button
+            class="btn btn-danger btn-sm ml-2"
+            (click)="deleteUser(i)"
+            [disabled]="isLoading"
+          >
+            Excluir
+          </button>
         </td>
       </tr>
     </tbody>
