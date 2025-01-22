@@ -18,7 +18,6 @@ export class UserComponent implements OnInit {
   isLoading: boolean = false;
   cpfError: boolean = false;
   creciError: boolean = false;
-  nameError: boolean = false;
 
   constructor(private userService: UserService) {}
 
@@ -36,7 +35,7 @@ export class UserComponent implements OnInit {
     // Verificar erros antes de enviar o formulário
     this.validateForm();
 
-    if (form.valid && !this.cpfError && !this.creciError && !this.nameError) {
+    if (form.valid && !this.cpfError && !this.creciError) {
       this.isLoading = true;
 
       if (this.isEditMode) {
@@ -68,7 +67,6 @@ export class UserComponent implements OnInit {
   validateForm(): void {
     this.cpfError = this.currentUser.cpf.replace(/\D/g, '').length !== 11;
     this.creciError = this.currentUser.creci.length < 3;
-    this.nameError = this.currentUser.name.length < 3;
   }
 
   editUser(index: number): void {
@@ -83,7 +81,6 @@ export class UserComponent implements OnInit {
     this.isLoading = false;
     this.cpfError = false;
     this.creciError = false;
-    this.nameError = false;
   }
 
   deleteUser(index: number): void {
