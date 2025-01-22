@@ -1,7 +1,7 @@
 // src/app/user/components/user-form/user-form.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../../../core/services/user.service';
+import { UserService } from '../../../../core/services/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
