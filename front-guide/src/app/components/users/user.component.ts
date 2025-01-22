@@ -18,6 +18,7 @@ export class UserComponent implements OnInit {
   isLoading: boolean = false;
   cpfError: boolean = false;
   creciError: boolean = false;
+  successMessage: string = '';
 
   constructor(private userService: UserService) {}
 
@@ -36,6 +37,7 @@ export class UserComponent implements OnInit {
 
     if (form.valid && !this.cpfError && !this.creciError) {
       this.isLoading = true;
+      this.successMessage = '';
 
       console.log('Dados enviados para o backend:', this.currentUser);
       this.currentUser.cpf = this.currentUser.cpf.replace(/\D/g, '');
@@ -46,6 +48,7 @@ export class UserComponent implements OnInit {
           .subscribe(
             () => {
               this.loadUsers();
+              this.successMessage = 'Usuário atualizado com sucesso!';
               this.resetForm();
             },
             (error) => {
@@ -57,6 +60,7 @@ export class UserComponent implements OnInit {
         this.userService.addUser(this.currentUser).subscribe(
           () => {
             this.loadUsers();
+            this.successMessage = 'Usuário cadastrado com sucesso!';
             this.resetForm();
           },
           (error) => {
@@ -88,20 +92,23 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(index: number): void {
-    const userId = this.users[index].id;
-    if (userId) {
-      this.isLoading = true;
-      this.userService.deleteUser(userId).subscribe(
-        () => {
-          this.users.splice(index, 1);
-          this.isLoading = false;
-        },
-        () => {
-          this.isLoading = false;
-        }
-      );
-    }
+  const userId = this.users[index].id;
+  if (userId) {
+    this.isLoading = true;
+    this.userService.deleteUser(userId).subscribe(
+      () => {
+        this.users.splice(index, 1);
+        this.successMessage = 'Usuário excluído com sucesso!';
+        this.isLoading = false;
+      },
+      (error) => {
+        this.isLoading = false;
+        console.error(error);
+      }
+    );
   }
+}
+
 
   formatCpf(event: any): void {
     const input = event.target as HTMLInputElement;

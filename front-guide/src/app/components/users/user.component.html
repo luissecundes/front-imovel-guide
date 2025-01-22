@@ -6,6 +6,11 @@
     </div>
   </div>
 
+  <!-- Mensagem de Sucesso -->
+  <div *ngIf="successMessage" class="alert alert-success mt-3">
+    {{ successMessage }}
+  </div>
+
   <!-- Título Dinâmico -->
   <h1 class="text-center mb-4">
     {{ isEditMode ? "Editar Corretor" : "Bem-vindo à Imóvel Guide!" }}
