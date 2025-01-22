@@ -27,7 +27,7 @@
 .btn-animate {
   padding: 15px 30px;
   font-size: 1.2em;
-  background-color: #4CAF50;
+  background-color: #070a41;
   color: white;
   border: none;
   border-radius: 5px;
@@ -37,8 +37,8 @@
 
 .btn-animate:hover {
   transform: scale(1.1);
- 
+
  /* Aumenta o tamanho do botão quando o mouse passa por cima */
-  background-color: #45a049;
+  background-color: #2466bd;
   /* Muda a cor do botão ao passar o mouse */
 }
