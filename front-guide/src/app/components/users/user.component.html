@@ -33,6 +33,9 @@
         class="form-control"
         [(ngModel)]="currentUser.name"
       />
+      <div *ngIf="nameError" class="text-danger">
+        O nome deve ter pelo menos 3 caracteres
+      </div>
     </div>
     <div class="form-group">
       <label for="cpf">CPF</label>
@@ -60,7 +63,9 @@
         class="form-control"
         [(ngModel)]="currentUser.creci"
       />
-      <div *ngIf="creciError" class="text-danger">Digite pelo menos 3 números</div>
+      <div *ngIf="creciError" class="text-danger">
+        Digite pelo menos 3 números
+      </div>
     </div>
 
     <!-- Botão dinâmico para Enviar ou Editar -->
