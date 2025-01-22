@@ -17,20 +17,36 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers(): void {
     this.userService.getAllUsers().subscribe((dado) => {
       console.log(dado);
       this.users = dado.users || [];
     });
   }
 
-  editUser(index: number): void {
-  }
-
   onSubmit(form: any): void {
     if (form.valid) {
-      form.reset();
+      const newUser: User = form.value;
+      this.userService.addUser(newUser).subscribe(() => {
+        this.loadUsers();
+        form.reset(); 
+      });
     }
   }
 
-  deleteUser(index: number): void {}
+  editUser(index: number): void {
+    // Implementar lógica de edição se necessário
+  }
+
+  deleteUser(index: number): void {
+    const userId = this.users[index].id;
+    if (userId) {
+      this.userService.deleteUser(userId).subscribe(() => {
+        this.users.splice(index, 1);
+      });
+    }
+  }
 }
