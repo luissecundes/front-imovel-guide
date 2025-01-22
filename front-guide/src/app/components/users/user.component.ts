@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserComponent implements OnInit {
   users: User[] = [];
+  currentUser: User = { id: 0, name: '', cpf: '', creci: '' };
+  isEditMode: boolean = false;
   isLoading: boolean = false;
 
   constructor(private userService: UserService) {}
@@ -23,30 +25,50 @@ export class UserComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getAllUsers().subscribe((dado) => {
-      console.log(dado);
       this.users = dado.users || [];
     });
   }
 
   onSubmit(form: any): void {
     if (form.valid) {
-      this.isLoading = true; 
-      const newUser: User = form.value;
-      this.userService.addUser(newUser).subscribe(
-        () => {
-          this.loadUsers();
-          form.reset();
-          this.isLoading = false;
-        },
-        () => {
-          this.isLoading = false;
-        }
-      );
+      this.isLoading = true;
+
+      if (this.isEditMode) {
+       this.userService
+         .updateUser(this.currentUser.id ?? 0, this.currentUser)
+         .subscribe(
+           () => {
+             this.loadUsers();
+             this.resetForm();
+           },
+           () => {
+             this.isLoading = false;
+           }
+         );
+      } else {
+        this.userService.addUser(this.currentUser).subscribe(
+          () => {
+            this.loadUsers();
+            this.resetForm();
+          },
+          () => {
+            this.isLoading = false;
+          }
+        );
+      }
     }
   }
 
   editUser(index: number): void {
-    // Implementar lógica de edição se necessário
+    const user = this.users[index];
+    this.currentUser = { ...user };
+    this.isEditMode = true;
+  }
+
+  resetForm(): void {
+    this.currentUser = { id: 0, name: '', cpf: '', creci: '' };
+    this.isEditMode = false;
+    this.isLoading = false;
   }
 
   deleteUser(index: number): void {
@@ -84,3 +106,4 @@ export class UserComponent implements OnInit {
     input.value = value;
   }
 }
+

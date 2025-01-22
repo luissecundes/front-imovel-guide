@@ -1,5 +1,7 @@
 <div class="container">
-  <h1 class="text-center mb-4">Bem-vindo à Imóvel Guide!</h1>
+  <h1 class="text-center mb-4">
+    {{ isEditMode ? 'Editar Corretor' : 'Bem-vindo à Imóvel Guide!' }}
+  </h1>
 
   <!-- Spinner -->
   <div *ngIf="isLoading" class="spinner-overlay">
@@ -8,7 +10,7 @@
     </div>
   </div>
 
-  <!-- Formulário para Adicionar Usuário -->
+  <!-- Formulário -->
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
       <label for="nome">Nome</label>
@@ -16,31 +18,31 @@
         type="text"
         id="nome"
         name="name"
-        ngModel
+        [(ngModel)]="currentUser.name"
         required
         class="form-control"
       />
     </div>
     <div class="form-group">
-  <label for="cpf">CPF</label>
-  <input
-    type="text"
-    id="cpf"
-    name="cpf"
-    ngModel
-    required
-    class="form-control"
-    (input)="formatCpf($event)"
-    maxlength="14"
-  />
-</div>
+      <label for="cpf">CPF</label>
+      <input
+        type="text"
+        id="cpf"
+        name="cpf"
+        [(ngModel)]="currentUser.cpf"
+        required
+        class="form-control"
+        (input)="formatCpf($event)"
+        maxlength="14"
+      />
+    </div>
     <div class="form-group">
       <label for="creci">CRECI</label>
       <input
         type="text"
         id="creci"
         name="creci"
-        ngModel
+        [(ngModel)]="currentUser.creci"
         required
         class="form-control"
       />
@@ -50,12 +52,12 @@
       class="btn btn-success btn-block"
       [disabled]="isLoading"
     >
-      Adicionar
+      {{ isEditMode ? 'Editar' : 'Adicionar' }}
     </button>
   </form>
 
-  <!-- Tabela de Dados -->
-  <table class="table table-hover mt-5">
+  <!-- Tabela -->
+  <table *ngIf="!isEditMode" class="table table-hover mt-5">
     <thead>
       <tr>
         <th>ID</th>
