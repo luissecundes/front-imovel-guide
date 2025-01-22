@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserComponent } from './components/tasks/user.component';
+import { UserComponent } from './components/users/user.component';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,5 @@ import { UserComponent } from './components/tasks/user.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'ListaDeTarefasAngular';
+  title = 'UsersImovelGuide';
 }
