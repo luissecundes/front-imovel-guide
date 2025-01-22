@@ -1,6 +1,5 @@
 /* src/app/app.component.css */
 
-/* Fundo suave para a página */
 body {
   background-color: #cad4ec;
   font-family: 'Arial', sans-serif;
@@ -8,11 +7,10 @@ body {
   padding: 0;
 }
 
-/* Alinhar o conteúdo centralizado */
 .container {
-  max-width: 900px; /* Aumentando a largura do container */
+  max-width: 900px;
   margin: 50px auto;
-  padding: 30px; /* Ajustando o padding para dar mais espaçamento */
+  padding: 30px;
   background-color: #e6ecf0;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
