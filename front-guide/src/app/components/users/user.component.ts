@@ -34,17 +34,17 @@ export class UserComponent implements OnInit {
       this.isLoading = true;
 
       if (this.isEditMode) {
-       this.userService
-         .updateUser(this.currentUser.id ?? 0, this.currentUser)
-         .subscribe(
-           () => {
-             this.loadUsers();
-             this.resetForm();
-           },
-           () => {
-             this.isLoading = false;
-           }
-         );
+        this.userService
+          .updateUser(this.currentUser.id ?? 0, this.currentUser)
+          .subscribe(
+            () => {
+              this.loadUsers();
+              this.resetForm();
+            },
+            () => {
+              this.isLoading = false;
+            }
+          );
       } else {
         this.userService.addUser(this.currentUser).subscribe(
           () => {
@@ -104,6 +104,10 @@ export class UserComponent implements OnInit {
     }
 
     input.value = value;
+  }
+
+  cancelEdit(): void {
+    this.resetForm();
   }
 }
 

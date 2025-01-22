@@ -1,26 +1,30 @@
 <div class="container">
+  <!-- Título Dinâmico -->
   <h1 class="text-center mb-4">
     {{ isEditMode ? 'Editar Corretor' : 'Bem-vindo à Imóvel Guide!' }}
   </h1>
 
-  <!-- Spinner -->
-  <div *ngIf="isLoading" class="spinner-overlay">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Aguarde...</span>
-    </div>
-  </div>
+  <button
+    class="btn btn-secondary mb-3"
+    *ngIf="isEditMode"
+    (click)="cancelEdit()"
+  >
+    Voltar
+  </button>
 
   <!-- Formulário -->
   <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+    <!-- Campos do formulário -->
     <div class="form-group">
       <label for="nome">Nome</label>
       <input
         type="text"
         id="nome"
         name="name"
-        [(ngModel)]="currentUser.name"
+        ngModel
         required
         class="form-control"
+        [(ngModel)]="currentUser.name"
       />
     </div>
     <div class="form-group">
@@ -29,10 +33,11 @@
         type="text"
         id="cpf"
         name="cpf"
-        [(ngModel)]="currentUser.cpf"
+        ngModel
         required
         class="form-control"
         (input)="formatCpf($event)"
+        [(ngModel)]="currentUser.cpf"
         maxlength="14"
       />
     </div>
@@ -42,22 +47,25 @@
         type="text"
         id="creci"
         name="creci"
-        [(ngModel)]="currentUser.creci"
+        ngModel
         required
         class="form-control"
+        [(ngModel)]="currentUser.creci"
       />
     </div>
+
+    <!-- Botão dinâmico para Adicionar ou Editar -->
     <button
       type="submit"
       class="btn btn-success btn-block"
       [disabled]="isLoading"
     >
-      {{ isEditMode ? 'Editar' : 'Adicionar' }}
+      {{ isEditMode ? 'Salvar' : 'Adicionar' }}
     </button>
   </form>
 
-  <!-- Tabela -->
-  <table *ngIf="!isEditMode" class="table table-hover mt-5">
+  <!-- Tabela de Dados -->
+  <table class="table table-hover mt-5" *ngIf="!isEditMode">
     <thead>
       <tr>
         <th>ID</th>
