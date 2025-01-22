@@ -17,7 +17,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // Lista de usuários para armazenar os dados inseridos
   users: any[] = [];
 
   // Método para adicionar os dados do formulário à tabela
@@ -32,5 +31,16 @@ export class AppComponent {
       this.addUser(form.value.nome, form.value.cpf, form.value.creci);
       form.reset(); // Limpar o formulário após o envio
     }
+  }
+
+  // Método para editar um usuário (ainda não implementado)
+  editUser(index: number): void {
+    // Aqui você pode implementar a lógica para editar o usuário
+    console.log('Editando usuário:', this.users[index]);
+  }
+
+  // Método para excluir um usuário
+  deleteUser(index: number): void {
+    this.users.splice(index, 1); // Remove o usuário da lista
   }
 }

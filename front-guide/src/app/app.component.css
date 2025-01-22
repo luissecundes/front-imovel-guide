@@ -1,44 +1,112 @@
 /* src/app/app.component.css */
-.welcome-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f8ff;
-  /* Cor de fundo suave */
-  color: #333;
+
+/* Fundo suave para a página */
+body {
+  background-color: #cad4ec;
   font-family: 'Arial', sans-serif;
 }
 
-.welcome-content {
-  text-align: center;
+/* Alinhar o conteúdo centralizado */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #e6ecf0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.welcome-content h1 {
-  font-size: 3em;
-  margin-bottom: 20px;
+/* Título do cabeçalho */
+h1 {
+  font-size: 2rem;
+  color: #142146;
+  font-weight: 600;
 }
 
-.welcome-content p {
-  font-size: 1.2em;
-  margin-bottom: 40px;
+/* Estilo do formulário */
+.form-group label {
+  font-weight: bold;
+  color: #333;
 }
 
-.btn-animate {
-  padding: 15px 30px;
-  font-size: 1.2em;
-  background-color: #070a41;
-  color: white;
-  border: none;
+.form-control {
   border-radius: 5px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 1rem;
 }
 
-.btn-animate:hover {
-  transform: scale(1.1);
+.form-control:focus {
+  border-color: #4e73df;
+  box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+}
 
- /* Aumenta o tamanho do botão quando o mouse passa por cima */
-  background-color: #2466bd;
-  /* Muda a cor do botão ao passar o mouse */
+button {
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Tabela */
+.table {
+  width: 100%;
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.table thead {
+  background-color: #cad4ec;
+}
+
+.table th, .table td {
+  padding: 12px;
+  text-align: left;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #cad4ec;
+}
+
+/* Botões de Ação */
+.btn-sm {
+  padding: 6px 12px;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #d39e00;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Adicionando espaçamento entre as ações */
+.ml-2 {
+  margin-left: 8px;
 }

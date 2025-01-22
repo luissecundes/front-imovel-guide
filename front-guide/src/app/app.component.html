@@ -1,10 +1,10 @@
 <!-- src/app/app.component.html -->
 <div class="container">
   <!-- Título -->
-  <h1>Bem-vindo à Imóvel Guide!</h1>
+  <h1 class="text-center mb-4">Bem-vindo à Imóvel Guide!</h1>
 
   <!-- Formulário -->
-  <form #userForm="ngForm">
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
     <div class="form-group">
       <label for="nome">Nome</label>
       <input type="text" id="nome" name="nome" ngModel required class="form-control" />
@@ -17,24 +17,30 @@
       <label for="creci">CRECI</label>
       <input type="text" id="creci" name="creci" ngModel required class="form-control" />
     </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="submit" class="btn btn-success btn-block">Enviar</button>
   </form>
 
   <!-- Tabela de Dados -->
-  <table class="table table-striped mt-4">
+  <table class="table table-hover mt-5">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Nome</th>
         <th>CPF</th>
         <th>CRECI</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-      <!-- Aqui você vai adicionar os dados inseridos -->
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of users; let i = index">
+        <td>{{ i + 1 }}</td>
         <td>{{ user.nome }}</td>
         <td>{{ user.cpf }}</td>
         <td>{{ user.creci }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="editUser(i)">Editar</button>
+          <button class="btn btn-danger btn-sm ml-2" (click)="deleteUser(i)">Excluir</button>
+        </td>
       </tr>
     </tbody>
   </table>
